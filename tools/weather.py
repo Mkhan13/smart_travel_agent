@@ -20,19 +20,19 @@ def get_weather(city):
     current = weather_data.get('current_weather', {})
     daily = weather_data.get('daily', {})
 
-    temp_c = current.get("temperature")
+    temp_c = current.get('temperature')
     temp_f = (temp_c * 9/5) + 32
 
     # Average precipitation over next 7 days
-    precip_list = daily.get("precipitation_sum", [])
+    precip_list = daily.get('precipitation_sum', [])
     avg_precip_mm = round(sum(precip_list) / len(precip_list), 1) if precip_list else 0
     will_rain = avg_precip_mm > 1.0  # more than 1mm/day average means rain likely
 
     return {
-        "temperature_c": temp_c,
-        "temperature_f": round(temp_f, 1),
-        "wind_speed_kmh": current.get("windspeed"),
-        "avg_daily_precip_mm": avg_precip_mm,
-        "will_rain": will_rain,
-        "summary": f"{round(temp_f,1)}°F ({temp_c}°C), wind {current.get('windspeed')} km/h, avg precip {avg_precip_mm} mm/day"
+        'temperature_c': temp_c,
+        'temperature_f': round(temp_f, 1),
+        'wind_speed_kmh': current.get('windspeed'),
+        'avg_daily_precip_mm': avg_precip_mm,
+        'will_rain': will_rain,
+        'summary': f'{round(temp_f,1)}°F ({temp_c}°C), wind {current.get('windspeed')} km/h, avg precip {avg_precip_mm} mm/day'
     }
