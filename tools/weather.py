@@ -12,11 +12,8 @@ def get_weather(city):
     lat = geo_response['results'][0]['latitude']
     lon = geo_response['results'][0]['longitude']
 
-    weather_url = (
-        f'https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}'
-        f'&current_weather=true&daily=precipitation_sum,weathercode&timezone=auto'
-    )
-    weather_data = requests.get(weather_url).json()
+    weather_url = (f'https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true&daily=precipitation_sum,weathercode&timezone=auto')
+    weather_data = requests.get(weather_url).json() # forcast for the next seven days
     current = weather_data.get('current_weather', {})
     daily = weather_data.get('daily', {})
 
