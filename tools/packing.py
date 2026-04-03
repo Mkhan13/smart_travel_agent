@@ -1,3 +1,4 @@
+from datetime import datetime
 from weather import get_weather
 
 BASE_LIST = [
@@ -35,9 +36,15 @@ COLD_THRESHOLD_C = 15   # below this, bring cold weather items
 VERY_COLD_THRESHOLD_C = 5  # below this, bring heavy winter items
 HOT_THRESHOLD_C = 28    # above this, bring hot weather items
 
-def get_packing_list(city: str, trip_days: int = 7) -> dict:
+def get_packing_list(city, start_date=None, end_date=None):
     '''Generate a packing list for a trip to a city. Uses live weather data to add weather-appropriate items.'''
-    weather = get_weather(city)
+    weather = get_weather(city, start_date, end_date)
+
+    # Calculate trip length from dates
+    if start_date and end_date:
+        trip_days = (datetime.strptime(end_date, '%Y-%m-%d') - datetime.strptime(start_date, '%Y-%m-%d')).days
+    else:
+        trip_days = 7
 
     if isinstance(weather, str):
         return {'error': f'Could not fetch weather for {city}: {weather}'}
