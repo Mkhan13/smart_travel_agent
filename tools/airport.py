@@ -1,6 +1,6 @@
 import requests
 import math
-from weather import get_coordinates
+from . import get_coordinates
 
 def distance(lat1, lon1, lat2, lon2):
     '''Haversine distance between lat and lon points'''

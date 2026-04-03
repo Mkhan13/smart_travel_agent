@@ -1,5 +1,5 @@
 from datetime import datetime
-from weather import get_weather
+from .weather import get_weather
 
 BASE_LIST = [
     # Essentials

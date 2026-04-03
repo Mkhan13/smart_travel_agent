@@ -1,15 +1,5 @@
 import requests
-
-def get_coordinates(city):
-    '''Return lat and lon for a city'''
-    geo_url = f'https://geocoding-api.open-meteo.com/v1/search?name={city}' # Open-Meteo geocoding API
-    geo_response = requests.get(geo_url).json()
-
-    if 'results' not in geo_response:
-        return None
-
-    result = geo_response['results'][0] # First result is most relevant
-    return result['latitude'], result['longitude']
+from . import get_coordinates
 
 def get_weather(city, start_date=None, end_date=None):
     '''Fetch weather info using Open-Meteo API. If dates are provided, returns forecast for that date range (up to 16 days out). Otherwise returns current weather and 7-day forecast.'''

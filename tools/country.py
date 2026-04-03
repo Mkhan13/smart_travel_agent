@@ -26,5 +26,3 @@ def get_country_info(country):
         'driving_side': data.get('car', {}).get('side', 'Unknown'),
         'population': data.get('population', 'Unknown'),
     }
-
-print(get_country_info('France'))
