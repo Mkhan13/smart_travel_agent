@@ -93,6 +93,3 @@ def get_packing_list(city: str, trip_days: int = 7) -> dict:
         packing_list.append('Extra luggage space or foldable bag')
 
     return packing_list + weather_additions
-
-
-print(get_packing_list("New York", trip_days=7))

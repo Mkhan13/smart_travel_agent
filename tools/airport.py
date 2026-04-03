@@ -51,5 +51,3 @@ def get_closest_airport(city):
 
         results.append(label)
     return results
-
-print(get_closest_airport('Seattle'))
