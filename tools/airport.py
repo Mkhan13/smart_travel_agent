@@ -22,6 +22,8 @@ def get_closest_airport(city):
     # Query for international airports within 200km radius of the city
     overpass_query = f'[out:json][timeout:25];nwr[aeroway=aerodrome][iata][aerodrome=international](around:300000,{lat},{lon});out center;'
     response = requests.post('https://overpass-api.de/api/interpreter', data={'data': overpass_query})
+    if response.status_code != 200 or not response.text.strip():
+        return 'Airport search temporarily unavailable'
     data = response.json()
     airports = data.get('elements', [])
 
@@ -45,9 +47,9 @@ def get_closest_airport(city):
         dist = airport['dist'] # Get distance from city to airport
 
         if iata:
-            label = f'{name} ({iata}) — {dist} km away'
+            label = f'{name} ({iata}) ({dist} km away)'
         else:
-            label = f'{name} — {dist} km away'
+            label = f'{name} ({dist} km away)'
 
         results.append(label)
     return results
