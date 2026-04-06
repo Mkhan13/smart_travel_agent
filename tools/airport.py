@@ -41,15 +41,12 @@ def get_closest_airport(city):
     airports.sort(key=lambda airport: airport['dist']) # Sort by closest airports first
     
     results = []
-    for airport in airports[:3]: # Get 3 closest airports
-        name = airport['tags'].get('name', 'Unknown Airport') # Get airport name, default to 'Unknown Airport' if not available
-        iata = airport['tags'].get('iata', '') # Get IATA code if available
-        dist = airport['dist'] # Get distance from city to airport
+    for airport in airports[:3]:
+        name = airport['tags'].get('name', 'Unknown Airport')
+        iata = airport['tags'].get('iata', '')
 
         if iata:
-            label = f'{name} ({iata}) ({dist} km away)'
+            results.append(f'{name} ({iata})')
         else:
-            label = f'{name} ({dist} km away)'
-
-        results.append(label)
+            results.append(name)
     return results
