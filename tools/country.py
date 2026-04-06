@@ -3,12 +3,15 @@ import requests
 def get_country_info(country):
     '''Get travel info about a country using the REST Countries API'''
 
-    response = requests.get(f'https://restcountries.com/v3.1/name/{country}')
+    response = requests.get(f'https://restcountries.com/v3.1/name/{country}?fullText=true')
+
+    if response.status_code != 200: # Partial match if exact match fails
+        response = requests.get(f'https://restcountries.com/v3.1/name/{country}')
 
     if response.status_code != 200:
         return 'Country not found'
 
-    data = response.json()[0] # Get first country match
+    data = response.json()[0]
 
 
     languages = data.get('languages', {}) # Get the main language
