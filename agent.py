@@ -10,7 +10,7 @@ from tools.packing import get_packing_list
 from tools.country import get_country_info
 
 load_dotenv()
-GROQ_API_KEY = os.getenv('GROQ_API_KEY2')
+GROQ_API_KEY = os.getenv('GROQ_API_KEY')
 GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions'
 
 
@@ -136,8 +136,7 @@ CITY_ALIASES = {
 
 
 def normalize_input(value, aliases):
-    '''Check if the input matches a known alias and return the correct name.
-    Converts to lowercase for matching so "USA", "usa", and "Usa" all work.'''
+    '''Convert input to match a known alias'''
     lookup = value.strip().lower()
     if lookup in aliases:
         return aliases[lookup]
