@@ -14,22 +14,6 @@ The agent loop is in `agent.py`. After the user enters a city, country, and trav
 | **Country Info** | Returns capital, language, currency, timezone, calling code, driving side, and population | REST Countries |
 | **Currency Converter** | Converts between currencies (defaults to 100 USD to local currency) | ExchangeRate API |
 
-## Project Structure
-
-```text
-smart_travel_agent/
-    agent.py           - Agent loop, tool definitions, LLM communication
-    main.py            - Streamlit UI
-    evaluation.py      - Evaluation suite
-    tools/
-        __init__.py    - Helper functions
-        weather.py     - Weather forecast tool
-        airport.py     - Closest airports tool
-        packing.py     - Packing list generator
-        country.py     - Country info tool
-        currency.py    - Currency conversion tool
-```
-
 ## Evaluation
 
 The evaluation uses custom test cases that were written to cover a range of scenarios: different continents, different climates, alias inputs, and varying country data formats. Each test case includes the expected country name and capital so the evaluation can verify correctness automatically.
