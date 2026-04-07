@@ -221,9 +221,9 @@ with st.form('trip_form'):
     with col2:
         country = st.text_input('Country', placeholder='e.g. France')
     with col3:
-        departure_date = st.date_input('Departure Date', value=date.today() + timedelta(days=7))
+        departure_date = st.date_input('Departure Date', value=date.today(), format='MM/DD/YYYY')
     with col4:
-        return_date = st.date_input('Return Date', value=date.today() + timedelta(days=14))
+        return_date = st.date_input('Return Date', value=date.today(), format='MM/DD/YYYY')
 
     btn1, btn2 = st.columns(2)
     with btn1:
