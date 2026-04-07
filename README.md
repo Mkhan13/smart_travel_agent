@@ -2,7 +2,7 @@
 
 ## How It Works
 
-The agent loop is in `agent.py`. After the user enters a city, country, and travel dates, the agent sends the user's trip details to the LLM along with tool definitions. The LLM decides which tools to call and with what arguments. The agent uses Groq's API with Llama 3.3 70B to plan tool calls, and presents results through a Streamlit dashboard.
+The agent loop is in `agent.py`. After the user enters a city, country, and travel dates, the agent sends the user's trip details to the LLM along with tool definitions. The model decides which tools to call and with what arguments. The agent uses Groq's API with Llama 3.3 70B to plan tool calls, and presents results through a Streamlit dashboard.
 
 ## Tools
 
@@ -34,38 +34,38 @@ The evaluation tests three areas:
 
 ### Results
 
-```text
+```
 Alias Handling: 12/12 (100%)
 Tool Completion: 30/30 (100%)
 Data Quality: 39/42 (93%)
 Overall Score: 81/84 (96%)
 ```
 
-The 3 data quality failures are all from the airport tool. The OpenStreetMap Overpass API has strict rate limits, so when running 6 test cases in sequence, some requests get temporarily blocked. This is an external API limitation, not a bug in the agent. A 5-second delay between test cases is used to reduce this, but it does not fully prevent it.
+The 3 data quality failures are all from the airport tool. The OpenStreetMap Overpass API has strict rate limits, so when running 6 test cases back to back, some requests get temporarily blocked. This is an API limitation, not a bug in the agent. A 5 second delay between test cases is used to reduce this, but it does not fully prevent it.
 
 ## Setup
 
-Requires Python 3.12+, a [Groq API key](https://console.groq.com), and an [ExchangeRate API key](https://www.exchangerate-api.com).
+Requires at least Python 3.12, a [Groq API key](https://console.groq.com), and an [ExchangeRate API key](https://www.exchangerate-api.com). Install project requirements:
 
-```bash
+```
 pip install -r requirements.txt
 ```
 
-Create a `.env` file in the project root:
+Create a `.env` file in the project root and add your API keys:
 
-```text
-GROQ_API_KEY=your_groq_api_key
-CURRENCY_API_KEY=your_exchangerate_api_key
+```
+GROQ_API_KEY=
+CURRENCY_API_KEY=
 ```
 
 Run the app:
 
-```bash
+```
 streamlit run main.py
 ```
 
 Run the evaluation:
 
-```bash
+```
 python evaluation.py
 ```
